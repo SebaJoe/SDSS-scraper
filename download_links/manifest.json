@@ -1,0 +1,10 @@
+{
+  "name": "SDSS Scraper",
+  "description": "Downloads images from a webpage. Main application is for SDSS SkyServer images.",
+  "version": "0.1",
+  "minimum_chrome_version": "16.0.884",
+  "content_security_policy": "script-src https://code.jquery.com/ https://cdn.jsdelivr.net/ https://stackpath.bootstrapcdn.com/ https://cdnjs.cloudflare.com/ 'self'; object-src 'self'",
+  "permissions": ["downloads", "<all_urls>"],
+  "browser_action": {"default_icon": "logo.png", "default_popup": "popup.html"},
+  "manifest_version": 2
+}

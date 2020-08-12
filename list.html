@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><link href="../../tools.css" rel="stylesheet" type="text/css" /><link href="../../../alerts.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+      #toc   {position:absolute;top:10px;left:10px;}
+      #content {position:absolute;top:0px;left:200px;background-color:White;}
+      .tx	 	{WIDTH:160px; TEXT-ALIGN: left; FONT-SIZE: 8pt;}
+    </style>
+    <script src="js/ctrlscript.js" type="text/javascript"></script>
+    <title>
+
+</title>
+    <script type="text/javascript">
+	function setPage(n) {
+	
+		//set page value for parent, so that we come back to same page
+		if (n>0) document.getElementById("getjpeg").page.value=n;
+
+		// set the local page value, and resubmit
+		document.getElementById("getjpeg").page.value=n;
+		document.getElementById("getjpeg").submit();
+
+		return false;
+	}
+    </script>
+</head>
+<body>
+    
+                    
+ <script type="text/javascript">
+     function keystone_login(logout) {
+         if (logout) {
+             window.location.href = "../../HandleKeystone.aspx";
+         }
+         else {
+             //window.location.href = "http://apps.sciserver.org/login-portal/Account/Login?callbackUrl=http://skyserver.sdss.org/dr16/en/tools/chart/list.aspx";
+             window.location.href = "http://apps.sciserver.org/login-portal/Account/Login?callbackUrl=http://skyserver.sdss.org%2fdr16%2fen%2ftools%2fchart%2flist.aspx";
+             //alert(window.location.href);
+             }
+         }
+    </script>
+  <div  style="height: 110px; width: 250px;   position:absolute;    right:0;    top:0;    background-color: rgba(0,33,66,0.5);	  border-radius:5px; z-index:1000;">	
+     <div>
+		<img src="../../images/sciserverlogo.png"  style="max-width: 95%;margin: 2%;" />
+	</div>
+	<div style="margin: 0;background-color:transparent;">
+		<asp:Div style="float:left; padding:5px 15px;font-family:sans-serif;color:#eee" id="sc1s3rv3r_uname" >
+<!--        <asp:Div id="sc1s3rv3r_uname" class="headerAlert">-->
+            Not logged in
+		</asp:Div>
+		<asp:Div style="float:right; background-color:#eee;margin-right:10px;border-radius:5px;border:solid 1px #444;padding:5px;">
+            <asp:a style="font-weight:bold;font-family:sans-serif;color:#003366" id="sc1s3rv3r_login" href="#" onmouseover="this.style.cursor='pointer'"  onclick="keystone_login(false);return false;">
+                Login
+	        </asp:a>
+		</asp:Div>
+        <asp:Div style="float:right; background-color:#eee;margin-left:5px;border-radius:5px;border:solid 1px #444;padding:5px;margin-right:8px;">
+            <a style="font-weight:bold;font-family:sans-serif;color:#003366" href="http://www.sciserver.org/support/help/" onmouseover="this.style.cursor='pointer'" target="_blank">
+                Help
+            </a>
+        </asp:Div>
+	</div>
+</div>
+                
+    <script type="text/javascript">
+        var branchname = "list";
+    </script>
+    <script type="text/javascript">
+      function init(def) {
+            //loadZoombar();
+            drawzoombar();
+            
+            if (def == "0") {	// the opt came from the caller, set the checkboxes
+                setoptstr(0);
+                //drawzoombar();
+                //resubmit();
+            }
+        }
+
+        function popup() {
+            var s = "blank.htm";
+            var w = window.open(s, "PRINTIMAGE",
+			    "width=720,height=940,resizable=yes,scrollbars,menubar=yes");
+            document.getElementById("getjpeg").target = "PRINTIMAGE";
+            document.getElementById("getjpeg").action = "printlist.aspx";
+            document.getElementById("getjpeg").method = "post";
+            document.getElementById("getjpeg").submit();
+            document.getElementById("getjpeg").target = "main";
+            document.getElementById("getjpeg").action = "list.aspx";
+            w.focus();
+            return false;
+        }
+    </script>
+    <form method="post" action="list.aspx" id="getjpeg">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="lnf9nfhqzbufab05hNGiVMj9QpxpC6Dd/wWN1qIpWf4F3UA6LFOzAYwQiC/xpe8MyivQpZBopPdYbftc14+Sj5b45Ydossyj2H9UrEvFeRU=" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="0BCB6ECD" />
+</div>
+    <div id="toc">
+        <table width="180" border="0" cellspacing="0" cellpadding="2" bgcolor=black>
+	    <tr>
+		    <td width="40"><a href="/dr16/" TARGET="_top">
+		    <img src="images/sdssIVlogo.png" border="0" height="50"></a></td>
+		    <td class='title' align="left" width="140">&nbsp;&nbsp;DR16</td>
+	    </tr>
+        </table>
+        <table border="0" cellspacing="0" cellpadding="0" >
+	        <tr>
+                <td class='s' align="left" ONMOUSEOVER="this.T_WIDTH='140';return escape('SkyServer Home page')">|<a target="_top" href="/dr16/">Home&nbsp;|</a></td>
+                <td class='s' align="left" ONMOUSEOVER="this.T_WIDTH='140';return escape('Help on the current tool')"><a target="MosaicWindow" href="listinfo.aspx">Help&nbsp;|</a></td>
+        
+                        <td class='s' align="left" ONMOUSEOVER="this.T_WIDTH='140';return escape('Go to the Finding Chart')"><a href="javascript:void(0)" onclick="return gotochart();">Chart&nbsp;|</a></td>
+				         
+					    <td class='s' align="left" ONMOUSEOVER="this.T_WIDTH='140';return escape('Go to the Navigate Tool')"><a href="javascript:void(0)" onclick="return gotonavi();">Navi&nbsp;|</a></td>
+			            			
+		        <td class='s' align="left" ONMOUSEOVER="this.T_WIDTH='140';return escape('Go to the Object Explorer')"><A href="javascript:void(0)" onclick="return gotoExp();">Explore&nbsp;|</A></td>	
+	        </tr>
+        </table>
+
+        <table width="180" cellpadding=0 cellspacing=0 border=0>
+        <tr><td class='s'><a href="sqltoform.aspx" target="_top">Use query to fill form</a>
+        </td></tr>
+        <tr><td>
+	        <textarea wrap=off class='tx' cols=12 
+		        name="paste" rows=5>name,ra,dec
+367124498459158528,170.85553,-3.5070181
+367124773337065472,170.91621,-3.4762035
+367121749680089088,170.92811,-3.4950598
+367122024557996032,171.00745,-3.5534932
+367125048214972416,171.04859,-3.6179602
+367111029441718272,171.06197,-3.5907103
+367112128953346048,171.19509,-3.6280917
+367110204807997440,171.12762,-3.5441641
+367109929930090496,171.14687,-3.5572199
+367110479685904384,171.14342,-3.595747
+</textarea> 
+        </td></tr>
+        <tr><td class='s'>
+        Cut and paste ra/dec list<br>
+        </td></tr>
+        </table>
+
+        <p />
+        <table width="180" bgColor="lightblue" border="1" cellspacing=0 cellpadding=0 valign="middle">
+	        <tr><td colspan="2" align=middle bgcolor="skyblue">Parameters</td></tr>
+        <tr>
+	<td><span  ONMOUSEOVER="this.T_TEMP='3000';this.T_WIDTH='180';return escape('')">scale</span></td>
+		<td><table cellspacing=0 cellpadding=0><tr><td>
+			<INPUT class='in' type='text' size='3' maxlength='20' align='right'
+			value='0.4' name='scale' id='scale' onChange='setscale(0)' ></td><td>&nbsp;<span  ONMOUSEOVER="this.T_TEMP='3000';this.T_WIDTH='180';return escape('')">''/pix			</span></td></tr></table>
+		</td>
+</tr>
+<tr>
+	<td><span  ONMOUSEOVER="this.T_TEMP='3000';this.T_WIDTH='180';return escape('')">opt </span></td>
+		<td><table cellspacing=0 cellpadding=0><tr><td>
+			<INPUT class='in' type='text' size='3' maxlength='20' align='right'
+			value='' name='opt' id='opt' onChange='setoptstr(1);' ></td><td>&nbsp;<span  ONMOUSEOVER="this.T_TEMP='3000';this.T_WIDTH='180';return escape('')">			</span></td></tr></table>
+		</td>
+</tr>
+
+        </table>
+
+            <table width="180" cellspacing=4 cellpadding=0 border=0>
+	            <tr><td align=middle ONMOUSEOVER="this.T_WIDTH='140';return escape('Get an image of the sky at the specified coordinates')">
+	            <a href="javascript:void(0);" onClick="return resubmit();"><img 
+			            src="images/get_image.jpg" ALT="Submit" 
+			            border="0" WIDTH="112" HEIGHT="40"></a>
+	            </td>
+	            <td align=middle ONMOUSEOVER="this.T_WIDTH='140';return escape('Open a new window with a printable image')">
+	            <a href="javascript:void(0);" onClick="return popup();"><img 
+			            src="images/printer_icon_blue.jpg" ALT="Printable Image" 
+			            border="0" WIDTH="40" HEIGHT="40"></a>
+	            </td></tr>
+	
+            </table>
+
+            <table width="180" cellpadding=0 cellspacing=0 border=0>
+            <tr>
+	            <td><img src="./images/zoombar5.jpg" ALT="Zoom In" 
+			            border="0" WIDTH="160" HEIGHT="32" ISMAP 
+			            USEMAP="#zoom_bar_map" id="zoombar"></td>
+            </tr>
+            </table>
+
+            <p />
+
+            <map name="zoom_bar_map">
+            <area shape="rect" alt="zoom in" coords=" 2,8,24,28" href="javascript:void(0);" onmouseover="this.T_WIDTH='140';return escape('Zoom in')" onclick="return stepzoom(0.5)"/>
+            <area shape="rect" alt="zoom=5"  coords="25,8,30,24" href="javascript:void(0);" onclick="return setzoom(5)"/>
+            <area shape="rect" alt="zoom=4"  coords="33,8,38,24" href="javascript:void(0);" onclick="return setzoom(4)"/>
+            <area shape="rect" alt="zoom=3"  coords="41,8,46,24" href="javascript:void(0);" onclick="return setzoom(3)"/>
+            <area shape="rect" alt="zoom=2"  coords="50,8,55,24" href="javascript:void(0);" onclick="return setzoom(2)"/>
+            <area shape="rect" alt="zoom=1"  coords="58,8,63,22" href="javascript:void(0);" onclick="return setzoom(1)"/>
+            <area shape="rect" alt="zoom=0"  coords="66,8,71,24" href="javascript:void(0);" onclick="return setzoom(0)"/>
+            <area shape="rect" alt="zoom=-1" coords="75,8,80,24" href="javascript:void(0);" onclick="return setzoom(-1)"/>
+            <area shape="rect" alt="zoom=-2" coords="83,8,88,24" href="javascript:void(0);" onclick="return setzoom(-2)"/>
+            <area shape="rect" alt="zoom=-3" coords="91,8,96,24" href="javascript:void(0);" onclick="return setzoom(-3)"/>
+            <area shape="rect" alt="zoom=-4" coords="99,8,104,24" href="javascript:void(0);" onclick="return setzoom(-4)"/>
+            <area shape="rect" alt="zoom=-5" coords="107,8,112,24" href="javascript:void(0);" onclick="return setzoom(-5)"/>
+            <area shape="rect" alt="zoom=-6" coords="115,8,120,24" href="javascript:void(0);" onclick="return setzoom(-6)"/>
+            <area shape="rect" alt="zoom=-7" coords="123,8,128,24" href="javascript:void(0);" onclick="return setzoom(-7)"/>
+            <area shape="rect" alt="zoom out" coords="132,6,156,28" href="javascript:void(0);" onmouseover="this.T_WIDTH='140';return escape('Zoom out')" onclick="return stepzoom(2.0)">
+            </map>
+	
+
+            <table width="180" cellpadding=0 cellspacing=0 border=1>
+             <tr><td align=middle bgcolor="skyblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Mark various options on the image')">Drawing options</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Grid with tickmarks to show image scale')"><INPUT type="checkbox" onclick="setopt(this,'G')" name="Grid"  id="Grid"> Grid</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Information on the Navigation window view')"><INPUT type="checkbox" onclick="setopt(this,'L')" name="Label"  id="Label"> Label</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Marks photometrically identified objects with light blue circles')"><INPUT type="checkbox" onclick="setopt(this,'P')" name="PhotoObjs"  id="PhotoObjs"> Photometric objects</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Marks spectroscopic objects with red squares')"><INPUT type="checkbox" onclick="setopt(this,'S')" name="SpecObjs"  id="SpecObjs"> Objects with spectra</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Inverts black and white in the image')"><INPUT type="checkbox" onclick="setopt(this,'I')" name="InvertImage"   id="InvertImage"> Invert Image</td></tr>	
+	<tr><td align=middle bgcolor="skyblue">Advanced options</td></tr>	
+	<!--
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Marks potential spectroscopy targets with green Xs')"><INPUT type="checkbox" onclick="setopt(this,'T')" name="TargetObjs"  id="TargetObjs"> Spectroscopic Targets</td></tr>
+	-->
+    <tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Shows APOGEE DATA')"><INPUT type="checkbox" onclick="setopt(this,'A')" name="APOGEE" id="Checkbox3"> APOGEE Spectra</td></tr>		
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='5000';this.T_WIDTH='140';return escape('Draws the outline (green) of each photometric object except at the largest zoom-out scales (where they are not legible)')"><INPUT type="checkbox" onclick="setopt(this,'O')" name="Outline"  id="Outline">SDSS Outlines</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Draws a rectangular box (pink) around each photometric object')"><INPUT type="checkbox" onclick="setopt(this,'B')" name="BoundingBox" id="BoundingBox">SDSS Bounding Boxes</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Shows each SDSS field (~10x14 arcmin) in gray')"><INPUT type="checkbox" onclick="setopt(this,'F')" name="Fields" id="Fields">SDSS Fields</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Shows masks (pink) around bright objects and data artifacts')"><INPUT type="checkbox" onclick="setopt(this,'M')" name="Masks" id="Masks">SDSS Masks</td></tr>
+	<tr><td bgColor="lightblue" ONMOUSEOVER="this.T_TEMP='2000';this.T_WIDTH='140';return escape('Shows plates (lavender) used to collect spectra')"><INPUT type="checkbox" onclick="setopt(this,'Q')" name="Plates" id="Plates">SDSS Plates</td></tr>		
+
+    <tr>
+        <td>
+            <div id="poweredby">
+                <b>Powered by</b><br />
+                <img src="../../images/sciserver_logo_inverted_vertical.png" alt="SciServer" align="middle" />
+            </div>
+        </td>
+    </tr>
+           </table>
+
+    </div>
+    <input type="hidden" value="1" name="page">
+    </form>
+    <div id="content">
+        
+    
+    <div>
+    <table border="0" cellspacing="2" cellpadding="0">
+	    <tr>
+		    <td width="10"></td>
+		    <td class='s'><table><tr><td class='s'><a href='javascript:void(0);' onclick='return setPage(0);'>obj list</a></td>
+<td class='h'><a href='javascript:void(0);' onclick='return setPage(1);'>page 1</a></td>
+</tr></table></td>
+	    </tr>
+
+	    <tr>
+		    <td>&nbsp;</td>
+		    <td>
+
+        <table border=1>
+<tr><td colspan=5 align='center'></td>
+</tr>
+<tr>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=170.85553&dec=-3.5070181','EXPLORE')" href='../explore/obj.aspx?ra=170.85553&dec=-3.5070181'>367124498459158528&nbsp;&nbsp;<br>J112325.32-033025.2</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=170.85553&dec=-3.5070181&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=170.85553&dec=-3.5070181&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=170.85553&dec=-3.5070181&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=170.91621&dec=-3.4762035','EXPLORE')" href='../explore/obj.aspx?ra=170.91621&dec=-3.4762035'>367124773337065472&nbsp;&nbsp;<br>J112339.89-032834.3</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=170.91621&dec=-3.4762035&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=170.91621&dec=-3.4762035&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=170.91621&dec=-3.4762035&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=170.92811&dec=-3.4950598','EXPLORE')" href='../explore/obj.aspx?ra=170.92811&dec=-3.4950598'>367121749680089088&nbsp;&nbsp;<br>J112342.74-032942.2</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=170.92811&dec=-3.4950598&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=170.92811&dec=-3.4950598&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=170.92811&dec=-3.4950598&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=171.00745&dec=-3.5534932','EXPLORE')" href='../explore/obj.aspx?ra=171.00745&dec=-3.5534932'>367122024557996032&nbsp;&nbsp;<br>J112401.78-033312.5</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=171.00745&dec=-3.5534932&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=171.00745&dec=-3.5534932&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=171.00745&dec=-3.5534932&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=171.04859&dec=-3.6179602','EXPLORE')" href='../explore/obj.aspx?ra=171.04859&dec=-3.6179602'>367125048214972416&nbsp;&nbsp;<br>J112411.66-033704.6</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=171.04859&dec=-3.6179602&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=171.04859&dec=-3.6179602&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=171.04859&dec=-3.6179602&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+</tr>
+<tr>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=171.06197&dec=-3.5907103','EXPLORE')" href='../explore/obj.aspx?ra=171.06197&dec=-3.5907103'>367111029441718272&nbsp;&nbsp;<br>J112414.87-033526.5</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=171.06197&dec=-3.5907103&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=171.06197&dec=-3.5907103&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=171.06197&dec=-3.5907103&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=171.19509&dec=-3.6280917','EXPLORE')" href='../explore/obj.aspx?ra=171.19509&dec=-3.6280917'>367112128953346048&nbsp;&nbsp;<br>J112446.82-033741.1</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=171.19509&dec=-3.6280917&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=171.19509&dec=-3.6280917&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=171.19509&dec=-3.6280917&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=171.12762&dec=-3.5441641','EXPLORE')" href='../explore/obj.aspx?ra=171.12762&dec=-3.5441641'>367110204807997440&nbsp;&nbsp;<br>J112430.62-033238.9</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=171.12762&dec=-3.5441641&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=171.12762&dec=-3.5441641&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=171.12762&dec=-3.5441641&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=171.14687&dec=-3.5572199','EXPLORE')" href='../explore/obj.aspx?ra=171.14687&dec=-3.5572199'>367109929930090496&nbsp;&nbsp;<br>J112435.24-033325.9</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=171.14687&dec=-3.5572199&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=171.14687&dec=-3.5572199&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=171.14687&dec=-3.5572199&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+    <td class='i'><a class='i' target='EXPLORE' onClick="goToWindow('../explore/obj.aspx?ra=171.14342&dec=-3.595747','EXPLORE')" href='../explore/obj.aspx?ra=171.14342&dec=-3.595747'>367110479685904384&nbsp;&nbsp;<br>J112434.42-033544.6</a><br> <a target='NAVIGATE' onClick="goToWindow('navi.aspx?ra=171.14342&dec=-3.595747&scale=0.2&width=120&height=120&opt=','NAVIGATE')"  href='navi.aspx?ra=171.14342&dec=-3.595747&scale=0.2&width=120&height=120&opt='><img src='http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?TaskName=Skyserver.Chart.List&ra=171.14342&dec=-3.595747&scale=0.4&width=120&height=120&opt='  width=120 height=120></a></td>
+</tr>
+</table>
+
+
+        </td></tr>
+    </table>
+    </div>
+
+    </div>
+    <script type="text/javascript">init('0');</script>
+    <script language="JavaScript" type="text/javascript" src="../../wz_tooltip.js"></script>
+</body>
+</html>
